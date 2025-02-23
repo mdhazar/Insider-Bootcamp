@@ -9,27 +9,41 @@
   background: url("https://www.transparenttextures.com/patterns/stardust.png"),
     #0c0c0a;
 }
-
+#favorite-scene iframe {
+  width: 600px;
+  height: 350px;
+  margin: 0 auto;
+}
 h1 {
   margin-bottom: 0.3em;
 }
-nav {
+#home p {
+  margin-top: 0.4em;
+}
+
+#navbar {
   font-size: 1.3rem;
+
   position: sticky;
   top: 0;
   padding: 0.2em;
   text-align: center;
 }
+#mobile-navbar {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
 .nav-links {
   display: flex;
   justify-content: center;
+
   gap: 0.4em;
 }
-.hamburger {
-  display: none;
-  font-size: 1rem;
-  border: none;
+.nav-links li {
+  margin-left: 20px;
 }
+
 li {
   list-style: none;
 }
@@ -46,6 +60,9 @@ body {
 }
 section {
   padding: 1.2rem;
+}
+i:hover {
+  color: #d4c32b;
 }
 
 .episode-list {
@@ -89,8 +106,63 @@ a:hover {
   justify-content: center;
   gap: 2rem;
 }
-@media (max-width: 768px) {
+
+@media (max-width: 850px) {
   #navbar {
     display: none;
+  }
+  #favorite-scene iframe {
+    width: 350px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  .character-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 12px;
+    grid-row-gap: 0px;
+    font-size: 1.2rem;
+  }
+  #mobile-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2em 0.4em;
+    position: relative;
+  }
+
+  #mobile-navbar .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+  }
+
+  #mobile-navbar .menu-icon {
+    font-size: 1.2rem;
+
+    transform: rotate(0.25turn);
+    transition: 1.2s ease-in-out;
+  }
+
+  #mobile-navbar .menu-icon:hover {
+    transform: scale(1.5);
+  }
+  #mobile-navbar .menu-container {
+    position: relative;
+  }
+
+  #mobile-navbar .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+  }
+
+  #mobile-navbar .menu-icon:hover ~ .mobile-menu,
+  #mobile-navbar .mobile-menu:hover {
+    display: block;
+    opacity: 1;
   }
 }
