@@ -14,12 +14,21 @@
           <input type="text" id="task" name="task" placeholder="Add a Task" />
           <input type="text" id="desc" name="desc" placeholder="Description" />
 
-          <label for="priority">Priority:</label>
-          <select id="priority" name="priority">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
+          <label>Priority:</label>
+          <div class="priority-options">
+            <label for="low">
+              <input type="radio" id="low" name="priority" value="low" />
+              Low
+            </label>
+            <label for="medium">
+              <input type="radio" id="medium" name="priority" value="medium" />
+              Medium
+            </label>
+            <label for="high">
+              <input type="radio" id="high" name="priority" value="high" />
+              High
+            </label>
+          </div>
 
           <input type="button" id="add-task" name="add-task" value="Add" />
         </form>

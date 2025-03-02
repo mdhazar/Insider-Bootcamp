@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* General Styles */
+
 body {
   background-color: #f4f4f4;
   padding: 20px;
@@ -35,7 +35,6 @@ select {
   border-radius: 5px;
 }
 
-/* Add Task Button */
 #add-task {
   background-color: #4caf4fc6;
   color: white;
@@ -51,7 +50,6 @@ select {
   background-color: #45a049;
 }
 
-/* Task List */
 .task-list-container {
   padding: 0.5em;
   border-radius: 8px;
@@ -70,19 +68,9 @@ select {
   align-items: center;
   background: #fff;
   padding: 10px;
-  margin: 5px 0;
+  margin: 0.3em 0;
   border-radius: 5px;
   border-left: 5px solid #ddd;
-}
-
-.low {
-  border-left-color: green;
-}
-.medium {
-  border-left-color: orange;
-}
-.high {
-  border-left-color: red;
 }
 
 .completed {
@@ -90,9 +78,19 @@ select {
   opacity: 0.6;
 }
 
-/* Filter Dropdown */
 #filter {
   font-size: 1.2rem;
   padding: 5px;
   margin-bottom: 10px;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+.task-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.3em;
+  gap: 0.4em;
 }
