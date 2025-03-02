@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="container">
+      <!-- Task Form -->
+      <div class="form-container">
+        <form>
+          <input type="text" id="task" name="task" placeholder="Add a Task" />
+          <input type="text" id="desc" name="desc" placeholder="Description" />
+
+          <label for="priority">Priority:</label>
+          <select id="priority" name="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+
+          <input type="button" id="add-task" name="add-task" value="Add" />
+        </form>
+      </div>
+
+      <!-- Task List with Filter -->
+      <div class="task-list-container">
+        <label for="filter">Filter by Priority:</label>
+        <select id="filter" name="filter">
+          <option value="all">All</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <ul id="task-list"></ul>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

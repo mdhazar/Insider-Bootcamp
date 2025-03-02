@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+* {
+  font-family: "Orbitron", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* General Styles */
+body {
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+/* Form Styling */
+.form-container {
+  background: white;
+  padding: 0.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+input[type="text"],
+select {
+  font-size: 1.5rem;
+  padding: 0.3em;
+  border: 1px solid #dfdfdf8a;
+  border-radius: 5px;
+}
+
+/* Add Task Button */
+#add-task {
+  background-color: #4caf4fc6;
+  color: white;
+  border: none;
+  padding: 0.3em;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+#add-task:hover {
+  background-color: #45a049;
+}
+
+/* Task List */
+.task-list-container {
+  padding: 0.5em;
+  border-radius: 8px;
+
+  max-width: 600px;
+  margin: 0.6em auto;
+}
+#task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border-left: 5px solid #ddd;
+}
+
+.low {
+  border-left-color: green;
+}
+.medium {
+  border-left-color: orange;
+}
+.high {
+  border-left-color: red;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Filter Dropdown */
+#filter {
+  font-size: 1.2rem;
+  padding: 5px;
+  margin-bottom: 10px;
+}
