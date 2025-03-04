@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  text-align: right;
+}
+body {
+  max-width: 844px;
+  margin: 0 auto;
+  padding: 0.3em;
+}
+body.dark-mode {
+  background-color: grey;
+}
+table {
+  border-collapse: collapse;
+  margin-bottom: 0.3em;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+th.dark-mode {
+  background-color: #c8c1c1;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  border: none;
+  margin-bottom: 0.5em;
+  min-width: 702px;
+}
+legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+input {
+  border: 1px solid #ddd;
+}
+input.dark-mode {
+  border: 1px solid #000000;
+  background-color: rgb(194, 193, 193);
+}
+#darkMode {
+  background-color: #f2f2f2;
+  color: black;
+}
+#darkMode.dark-mode {
+  background-color: black;
+  color: #f2f2f2;
+}
