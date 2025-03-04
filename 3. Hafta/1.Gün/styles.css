@@ -19,6 +19,8 @@ body.dark-mode {
 table {
   border-collapse: collapse;
   margin-bottom: 0.3em;
+  width: 100%;
+  height: auto;
 }
 th,
 td {
@@ -41,7 +43,9 @@ fieldset {
   gap: 0.3em;
   border: none;
   margin-bottom: 0.5em;
-  min-width: 702px;
+
+  width: 100%;
+  height: auto;
 }
 legend {
   font-size: 1.2rem;
