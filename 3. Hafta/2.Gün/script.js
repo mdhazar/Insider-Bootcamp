@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const apiKey = "bL0bhCIhT3uZ19mi5UEtuIa6fKduXxnJZdVjuzS0";
+  const apiKey = "DEMO_KEY";
   let isLoading = false;
 
   function fetchAPODImages(count = 5) {
