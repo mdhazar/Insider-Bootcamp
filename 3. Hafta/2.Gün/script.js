@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const apiKey = "bL0bhCIhT3uZ19mi5UEtuIa6fKduXxnJZdVjuzS0";
+  const apiKey = "bL0bhCIhT3uZ19mi5UEtuIa6fKduXxnJZdVjuzS0"; //Limit dolduysa "DEMO_KEY" ile değiştirebilirsiniz.
   let isLoading = false;
 
   function showLoading() {
