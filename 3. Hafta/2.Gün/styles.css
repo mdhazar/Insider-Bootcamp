@@ -40,8 +40,38 @@ body {
   border-radius: 0.5em;
   font-size: 0.9em;
 }
-#loading {
+
+#loading,
+#error-message {
   text-align: center;
   margin-top: 20px;
+  padding: 0.8em;
+  border-radius: 0.3em;
+}
+#loading {
+  background-color: #e6f2ff;
+  color: #0066cc;
   display: none;
+}
+#error-message {
+  background-color: #ffdddd;
+  color: #ff0000;
+  display: none;
+}
+.loading-spinner {
+  border: 0.3em solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -13,9 +13,16 @@
   </head>
   <body>
     <header>NASA Astronomy Picture of the Day</header>
-    <div id="apod-container"></div>
-    <div id="loading">Loading more images...</div>
 
+    <div id="error-message">
+      <p>Error. Please try again later.</p>
+      <button id="retry-button">Try again</button>
+    </div>
+    <div id="apod-container"></div>
+    <div id="loading">
+      <div class="loading-spinner"></div>
+      Loading more images...
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
