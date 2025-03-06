@@ -30,7 +30,7 @@ $(document).ready(function () {
       url: apiUrl,
       method: "GET",
       dataType: "json",
-      timeout: 10000,
+      timeout: 5000,
       success: function (data) {
         data.forEach((apod) => {
           if (apod.media_type !== "image") return;
@@ -99,6 +99,6 @@ $(document).ready(function () {
         fetchAPODImages(5);
       }
       hideLoading();
-    }, 5000);
+    }, 3000);
   });
 });
