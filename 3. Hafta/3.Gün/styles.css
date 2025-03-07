@@ -1,5 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .slider {
-  margin: 20px 0;
+  margin: 2rem;
 }
 
 .user-item {
@@ -19,8 +27,19 @@
   margin: 0 auto;
 }
 .modal-content {
-  padding: 20px;
   line-height: 1.6;
+}
+.user-item {
+  transition: all 0.3s ease;
+}
+
+#loading,
+#error-message {
+  transition: all 0.3s ease;
+}
+
+.slider {
+  transition: opacity 0.5s ease;
 }
 
 .modal-content h3 {
@@ -28,10 +47,6 @@
   color: #333;
 }
 
-.modal-content img {
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
 #loading {
   display: none;
 }
@@ -39,10 +54,6 @@
 #error-message {
   display: none;
   color: red;
-}
-
-.slick-slide {
-  padding: 10px;
 }
 
 .user-item {

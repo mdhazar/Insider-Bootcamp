@@ -2,21 +2,21 @@ $(document).ready(function () {
   let isLoading = false;
 
   function showLoading() {
-    $("#loading").show();
+    $("#loading").fadeIn(300);
   }
 
   function hideLoading() {
-    $("#loading").hide();
+    $("#loading").fadeOut(300);
   }
 
   function showError(message) {
     $("#error-message p").text(message || "Error. Please try again later.");
-    $("#error-message").show();
+    $("#error-message").fadeIn(300);
     hideLoading();
   }
 
   function hideError() {
-    $("#error-message").hide();
+    $("#error-message").fadeOut(300);
   }
 
   function fetchRandomUsers(count) {
@@ -53,11 +53,9 @@ $(document).ready(function () {
           `;
 
           const modalContent = `
-            <div id="${modalId}" style="display: none; max-width: 600px">
+            <div id="${modalId}" style="display: none;">
               <div class="modal-content">
-                <img src="${
-                  user.picture.large
-                }" style="max-width: 200px; float: left; margin-right: 20px">
+                <img src="${user.picture.large}">
                 <h3>${user.name.title} ${user.name.first} ${user.name.last}</h3>
                 <p><strong>Email:</strong> ${user.email}</p>
                 <p><strong>Phone:</strong> ${user.phone}</p>
@@ -84,11 +82,15 @@ $(document).ready(function () {
         $(".slider").slick({
           slidesToShow: 3,
           slidesToScroll: 1,
+
           dots: true,
           arrows: true,
         });
 
-        Fancybox.bind("[data-fancybox]", {});
+        Fancybox.bind("[data-fancybox]", {
+          animationEffect: "zoom",
+          transitionEffect: "slide",
+        });
       },
       error: function (xhr, status, error) {
         console.error("User loading error:", error);
@@ -112,14 +114,25 @@ $(document).ready(function () {
       },
     });
   }
+  $(".user-item").hover(
+    function () {
+      $(this).stop().animate({ marginTop: "-10px" }, 200);
+    },
+    function () {
+      $(this).stop().animate({ marginTop: "0px" }, 200);
+    }
+  );
 
   let initialCount = parseInt($("#user-count").val()) || 20;
   fetchRandomUsers(initialCount);
-
+  $("#fetch-button").click(function () {
+    $(this).fadeOut(300).fadeIn(300);
+  });
   $("#fetch-button").on("click", function () {
     let userCount = parseInt($("#user-count").val());
     if (userCount > 0 && userCount <= 50) {
       hideError();
+
       fetchRandomUsers(userCount);
     } else {
       alert("Please enter a number between 1 and 50.");
