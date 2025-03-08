@@ -19,14 +19,18 @@
     <header>
       <div class="header-container">
         <div class="logo">
-          <h1><a href="#">Ecommerce</a></h1>
+          <h1>Ecommerce</h1>
         </div>
         <nav>
           <ul>
             <li><a href="/main" aria-current="page">Home</a></li>
             <li><a href="/shop">Shop</a></li>
-            <li><a href="/favorites">Favorites</a></li>
-            <li><a href="/cart">Cart</a></li>
+            <li>
+              <a href="/favorites"><i class="fas fa-heart"></i> Favorites</a>
+            </li>
+            <li>
+              <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            </li>
           </ul>
         </nav>
         <div class="header-actions">
@@ -34,11 +38,92 @@
         </div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <section id="home" >
+        <div class="hero">
+          <div class="hero-content">
+            <h2>Welcome to Our Online Store</h2>
+            <p>Discover amazing products at unbeatable prices</p>
+            <a href="#shop" class="cta-button">Shop Now</a>
+          </div>
+        </div>
+      </section>
+      <section id="shop" class="page-section">
+      <h2>All Products</h2>
+      
+      <aside class="filters">
+        <h3>Filters</h3>
+        <div class="filter-group">
+          <h4>Categories</h4>
+          <ul>
+            <li>
+              <label>
+                <input type="checkbox" name="category" value="electronics" />
+                Electronics
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="category" value="men" />
+                Men
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="category" value="women" />
+                Women
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="category" value="jewelery" />
+                Jewelery
+              </label>
+            </li>
+          </ul>
+        </div>
+        <button id="applyFilters">Apply Filters</button>
+        <button id="resetFilters">Reset Filters</button>
+      </aside>
+      <div class="products-container">
+        <div class="sort-controls">
+          <label for="sortBy">Sort by:</label>
+          <select id="sortBy">
+            <option value="popularity">Popularity</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Customer Rating</option>
+          </select>
+        </div>
+        
+        <div class="product-grid">
+          
+        </div>
+      </div>
+      <section id="favorites">
+      <h2>Your Favorites</h2>
+      <div class="favorites-container">
+        <div class="favorites-list"></div>
+      </div>
+      </section>
+      <section id="cart"><h2>Your Shopping Cart</h2>
+        <div class="cart-container">
+          <div class="cart-summary">
+            
+            <div class="order-summary">
+              <h3>Order Summary</h3>
+              
+              <button class="checkout-btn">Proceed to Checkout</button>
+              <a href="#shop" class="continue-shopping">Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="footer-container">
         <article class="footer">
-          <h1 class="footer-title">Ecommerce</h3>
+          <h1 class="footer-title">Ecommerce</h1>
         </article>
         <article class="footer-social">
           <a href="#" class="social-icon">
