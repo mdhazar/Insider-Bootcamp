@@ -182,7 +182,7 @@ $(document).ready(function () {
                     <i class="far fa-heart"></i> Add to favorites
                   </a>
                 </div>
-              </div>
+              </div>x
             </div>
           </div>
         </div>
@@ -208,7 +208,8 @@ $(document).ready(function () {
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartDisplay();
-      alert(`${product.title} added to cart!`);
+      const productElement = $(`.product-card[data-id="${productId}"]`);
+      productElement.effect("shake", { times: 3, distance: 5 }, 300);
     }
   }
 
@@ -315,6 +316,12 @@ $(document).ready(function () {
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartDisplay();
     }
+  });
+
+  $("#clearCart").click(function () {
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartDisplay();
   });
 
   updateFavoritesDisplay();

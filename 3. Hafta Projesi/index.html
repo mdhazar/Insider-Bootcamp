@@ -9,11 +9,15 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   </head>
   <body>
     <header>
@@ -23,13 +27,13 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/main" aria-current="page">Home</a></li>
-            <li><a href="/shop">Shop</a></li>
+            <li><a href="#home" aria-current="page">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
             <li>
-              <a href="/favorites"><i class="fas fa-heart"></i> Favorites</a>
+              <a href="#favorites"><i class="fas fa-heart"></i> Favorites</a>
             </li>
             <li>
-              <a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+              <a href="#cart"><i class="fas fa-shopping-cart"></i> Cart</a>
             </li>
           </ul>
         </nav>
@@ -114,6 +118,7 @@
               <h3>Order Summary</h3>
               
               <button class="checkout-btn">Proceed to Checkout</button>
+              <button id="clearCart" class="clear-cart-btn">Clear Cart</button>
               <a href="#shop" class="continue-shopping">Continue Shopping</a>
             </div>
           </div>
