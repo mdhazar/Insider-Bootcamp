@@ -343,4 +343,14 @@ $(document).ready(function () {
     const isDarkMode = $("body").hasClass("dark-mode");
     $("#darkMode").text(isDarkMode ? "Light mode" : "Dark mode");
   }
+
+  $(".hero").slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true,
+    dots: false,
+  });
 });
