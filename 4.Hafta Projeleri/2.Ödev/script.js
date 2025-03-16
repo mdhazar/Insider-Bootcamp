@@ -1,12 +1,12 @@
 $(document).ready(function () {
+  const appendLocation = ".ins-api-users";
   $("body").css({
     backgroundColor: "lightgray",
     margin: "0",
     padding: "0",
     color: "#333",
   });
-
-  $(".ins-api-users").css({
+  $(appendLocation).css({
     cursor: "pointer",
     padding: "20px",
     border: "1px solid #ccc",
@@ -15,25 +15,104 @@ $(document).ready(function () {
     maxWidth: "800px",
     backgroundColor: "#e3e1e1",
   });
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === "childList") {
+        const userCards = $(appendLocation).find("div[data-id]");
+        if (
+          userCards.length === 0 &&
+          $(appendLocation).find(".reload-btn").length === 0
+        ) {
+          showReloadButton();
+        }
+      }
+    });
+  });
 
-  const storedData = localStorage.getItem("userData");
-  const storedTime = localStorage.getItem("userDataTimestamp");
+  observer.observe(document.querySelector(appendLocation), {
+    childList: true,
+    subtree: true,
+  });
+
+  function showReloadButton() {
+    const buttonUsed = sessionStorage.getItem("reloadButtonUsed") === "true";
+
+    const reloadBtn = $(`
+      <button class="reload-btn" ${buttonUsed ? "disabled" : ""}>
+        ${buttonUsed ? "Reload limit reached for this session" : "Reload Users"}
+      </button>
+    `);
+
+    reloadBtn.css({
+      backgroundColor: buttonUsed ? "#cccccc" : "#4CAF50",
+      color: "white",
+      border: "none",
+      padding: "10px 15px",
+      borderRadius: "4px",
+      cursor: buttonUsed ? "not-allowed" : "pointer",
+      display: "block",
+      margin: "20px auto",
+    });
+
+    if (!buttonUsed) {
+      reloadBtn.click(function () {
+        sessionStorage.setItem("reloadButtonUsed", "true");
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => {
+            if (!response.ok) throw new Error("Failed to load data");
+            return response.json();
+          })
+          .then((users) => {
+            const dataStore = {
+              data: users,
+              timestamp: new Date().getTime(),
+            };
+            localStorage.setItem("userDataStore", JSON.stringify(dataStore));
+            displayUsers(users);
+          })
+          .catch((error) => {
+            $(appendLocation).html(
+              `<p style="color:red">Error: ${error.message}</p><p>Click to retry</p>`
+            );
+          });
+        $(this)
+          .prop("disabled", true)
+          .css({
+            backgroundColor: "#cccccc",
+            cursor: "not-allowed",
+          })
+          .text("Reload limit reached for this session");
+      });
+    }
+
+    $(appendLocation).append(reloadBtn);
+  }
+
+  const storedDataObj = JSON.parse(
+    localStorage.getItem("userDataStore") || "{}"
+  );
+  const storedData = storedDataObj.data;
+  const storedTime = storedDataObj.timestamp;
   const isValid =
     storedData &&
     storedTime &&
     new Date().getTime() - parseInt(storedTime) < 24 * 60 * 60 * 1000;
 
   if (isValid) {
-    displayUsers(JSON.parse(storedData));
-    $(".ins-api-users").prepend(
+    displayUsers(storedData);
+    $(appendLocation).prepend(
       "<p><em>Data from localStorage. Click to refresh.</em></p>"
     );
   } else {
-    $(".ins-api-users").html("<p>Click here to load users</p>");
+    $(appendLocation).html("<p>Click here to load users</p>");
   }
 
-  $(".ins-api-users").click(function (e) {
-    if ($(e.target).hasClass("delete-btn")) return;
+  $(appendLocation).click(function (e) {
+    if (
+      $(e.target).hasClass("delete-btn") ||
+      $(e.target).hasClass("reload-btn")
+    )
+      return;
 
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => {
@@ -41,19 +120,26 @@ $(document).ready(function () {
         return response.json();
       })
       .then((users) => {
-        localStorage.setItem("userData", JSON.stringify(users));
-        localStorage.setItem("userDataTimestamp", new Date().getTime());
+        const dataStore = {
+          data: users,
+          timestamp: new Date().getTime(),
+        };
+        localStorage.setItem("userDataStore", JSON.stringify(dataStore));
         displayUsers(users);
       })
       .catch((error) => {
-        $(".ins-api-users").html(
+        $(appendLocation).html(
           `<p style="color:red">Error: ${error.message}</p><p>Click to retry</p>`
         );
       });
   });
 
   function displayUsers(users) {
-    $(".ins-api-users").html("<p><em>Click to refresh data</em></p>");
+    $(appendLocation).html("<p><em>Click to refresh data</em></p>");
+    if (!users || users.length === 0) {
+      showReloadButton();
+      return;
+    }
 
     users.forEach((user) => {
       const card = $(`
@@ -83,13 +169,17 @@ $(document).ready(function () {
       card.find(".delete-btn").click(function (e) {
         e.stopPropagation();
         const id = $(this).parent().data("id");
-        const data = JSON.parse(localStorage.getItem("userData") || "[]");
-        const updated = data.filter((user) => user.id !== id);
-        localStorage.setItem("userData", JSON.stringify(updated));
-        displayUsers(updated);
+        const dataStore = JSON.parse(
+          localStorage.getItem("userDataStore") || "{}"
+        );
+        if (dataStore.data) {
+          dataStore.data = dataStore.data.filter((user) => user.id !== id);
+          localStorage.setItem("userDataStore", JSON.stringify(dataStore));
+          displayUsers(dataStore.data);
+        }
       });
 
-      $(".ins-api-users").append(card);
+      $(appendLocation).append(card);
     });
   }
 });

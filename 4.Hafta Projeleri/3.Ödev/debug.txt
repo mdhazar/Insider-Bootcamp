@@ -1,0 +1,47 @@
+Bulduğum hatalar:
+
+1.Stok sayısından fazla ürün eklenebiliyor ve stok sayısı hiç güncellenmiyor.
+2.Stok sayısı ürün ekle-sil yaptıktan sonra ürün eklenince artıyor ve yanındaki bir ürünün stoğuda artabiliyor.
+3.Sepete ekledikçe toplam fiyat değişmiyor.
+4.Sil'e basınca o ürünün hepsi siliniyor.
+5. İndirim fiyatı %10 yerine %90 düşürüyor
+6.İndirimi uygulaya tıklayınca gelen uyarı silinmiyor ve üst üste sonsuza kadar eklenebiliyor.
+7.addItem'da "undefined" gerekli mi?
+8.Fiyatlar ve ürün adetleri hizalı değil.
+
+
+1.2.
+Stok sayısının azalması için bir kod yazılmamış
+product.stock -= quantity; satırı eklendi. Böylelikle stok sayısı azalmaya başladı
+product.stock <= quantity yerine product.stock < quantity bu değişimle 0 stok sayısına ulaşılabiliyor
+product.stock += 1 yerine product.stock += item.quantity yazdım böylelikle ileride daha güvenli bir değişim yapılabilir.
+ürün eklendiğinde stoğun güncellenmesi için document.dispatchEvent(new Event("stockUpdate")); satırını ekledim
+
+3.
+Toplam fiyatının değişmesi için calculate total "return sum + item.price * item.quantity;" yapıldı. 
+Böylelikle eklenen ürünlerin sayısı fiyatla çarpılıyor ve doğru bir sayı veriyor.
+
+4.
+removeitem içinde bulunan splice kısmına debugger koyduğumda 
+this.items.splice(itemIndex, 1)
+this.items'ın içinde aşağıdaki gibi bir array olduğunu görüyorum, sile basınca "splice" metodu indeksin tamamını siliyor.
+
+0 {productId: 3, name: 'Tablet', price: 5000, quantity: 3}
+1 {productId: 2, name: 'Telefon', price: 8000, quantity: 3}
+
+bunu engellemek için aynı toplamada yaptığım gibi "item.quantity -= quantity;" kodunu ekledim.
+Ayrıca silinen ürün miktarı 1'in altına inerse tamamen silinmesi için tekrardan splice metodunu kullandım
+
+5.
+Ürünün fiyatını 0.1 ile çarpınca fiyat yüzde 90 düşüyor. Yüzde 10 olması daha mantıklı olurdu, bunun için 0.9 ile çarpmak yeterli.
+this.total *= 0.9;
+
+6.
+Error mesajında "+=" eğer sadece "=" olursa mesajlar üst üste eklenmez ve sadece bir mesaj gösterilir.
+Ayrıca showMessage'daki gibi setTimeout kurulması iyi bir fikirmiş gibi geliyor.
+
+7.
+window.cart.addItem(productId, undefined); yerine window.cart.addItem(productId); yazılması kod temizliği açısından daha iyi olur
+
+8.
+cart item spanlarına flex:1 verince bütün veriler hizalandı
